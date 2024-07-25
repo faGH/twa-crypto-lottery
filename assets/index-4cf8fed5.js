@@ -1189,6 +1189,7 @@ Values:
   @media (prefers-color-scheme: dark) {
   }
 
+  min-height: 100vh;
   padding: var(--cl-padding) var(--cl-padding);
 `,mce=na.div`
   max-width: 900px;
@@ -1202,7 +1203,6 @@ Values:
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--cl-text-padding)*3);
 `,wce=na.div`
   color: var(--cl-color-special);
   padding: calc(var(--cl-block-padding)*2);
