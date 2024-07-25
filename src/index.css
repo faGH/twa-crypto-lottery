@@ -4,7 +4,7 @@
     --cl-color-special: rgb(223,142,61);
     --cl-background-color-primary: rgb(10, 11, 45);
     --cl-background-color-secondary: rgb(24, 24, 59);
-    --cl-block-padding: 10px;
+    --cl-block-padding: 15px;
     --cl-text-padding: 5px;
 }
 
@@ -17,8 +17,12 @@ body{
     background-color: var(--cl-background-color-primary);
 }
 
+.color-primary{
+    color: var(--cl-color-primary);
+}
+
 .color-secondary{
-    color: var(--cl-color-secondary)
+    color: var(--cl-color-secondary);
 }
 
 .flex{
@@ -38,7 +42,7 @@ body{
     padding-right: var(--cl-block-padding)
 }
 
-.pad-block-buttom{
+.pad-block-bottom{
     padding-bottom: var(--cl-block-padding)
 }
 
@@ -46,9 +50,34 @@ body{
     padding-right: var(--cl-text-padding)
 }
 
-.stick-to-buttom{
+.pad-text-left{
+    padding-left: var(--cl-text-padding)
+}
+
+.faded-text{
+    filter: brightness(0.75)
+}
+
+.stick-to-bottom{
     position: fixed;
     bottom: 0;
     left: 0;
-    right:0
+    right:0;
+    height: calc(var(--cl-block-padding)*2);
+}
+
+.l-text{
+    font-size: 155%;
+}
+
+.xl-text{
+    font-size: 225%;
+}
+
+.inline{
+    display: inline;
+}
+
+body{
+    padding-bottom: calc(var(--cl-block-padding)*5);
 }
