@@ -31,6 +31,7 @@ const SpecialButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 `;
 
 const TopContainer = styled.div`
@@ -41,8 +42,8 @@ const TopContainer = styled.div`
 function App() {
   const { network } = useTonConnect();
   const nextDrawText: string = "0d:0h:14m:19s"
-  const potSizeTon: number = 759480
-  const potSizeUsd: number = 1088000
+  const potSizeTon: string = (7594280).toLocaleString('en-US')
+  const potSizeUsd: string = (1088000).toLocaleString('en-US')
 
   return (
     <StyledApp>
