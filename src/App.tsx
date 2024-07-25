@@ -11,6 +11,7 @@ const StyledApp = styled.div`
   @media (prefers-color-scheme: dark) {
   }
 
+  min-height: 100vh;
   padding: var(--cl-padding) var(--cl-padding);
 `;
 
@@ -30,7 +31,6 @@ const SpecialButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--cl-text-padding)*3);
 `;
 
 const TopContainer = styled.div`
