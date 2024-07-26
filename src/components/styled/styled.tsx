@@ -3,10 +3,8 @@ import styled from "styled-components";
 export const Card = styled.div`
   padding: 18px 20px;
   border-radius: 8px;
-  background-color: white;
 
   @media (prefers-color-scheme: dark) {
-    background-color: #111;
   }
 `;
 

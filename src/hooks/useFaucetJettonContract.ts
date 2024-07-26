@@ -7,7 +7,7 @@ import FaucetJettonWallet from "../contracts/faucetJettonWallet";
 import { useQuery } from "@tanstack/react-query";
 
 export function useFaucetJettonContract() {
-  const { wallet, sender } = useTonConnect();
+  const { wallet_address: wallet, sender } = useTonConnect();
   const { client } = useTonClient();
 
   const faucetJettonContract = useAsyncInitialize(async () => {

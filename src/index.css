@@ -8,6 +8,7 @@
     --cl-text-padding: 5px;
 }
 
+:root,
 html,
 body{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
