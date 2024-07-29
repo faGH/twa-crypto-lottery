@@ -1206,6 +1206,6 @@ Values:
 `,s0e=$i.div`
   color: var(--cl-color-special);
   padding: calc(var(--cl-block-padding)*2);
-  background-color: red;
+  background-color: var(--cl-background-color-secondary);
   overflow: auto;
 `;function u0e(){ih();const e="0d:0h:14m:19s",t=7594280 .toLocaleString("en-US"),r=1088e3 .toLocaleString("en-US"),[n,o]=qt.useState([]);return Jt(r0e,{className:"styled-app",children:an(n0e,{className:"app-container",children:[an(i0e,{className:"pad-block-bottom",children:[an("div",{children:[Jt("div",{className:"color-secondary pad-text-right",children:"Next Draw:"}),Jt("div",{children:e})]}),Jt("div",{className:"flex-1"}),Jt(ZB,{})]}),an(o0e,{children:[Jt("div",{className:"l-text",children:"Jackpot!"}),an("div",{className:"xl-text",children:[t,Jt("div",{className:"faded-text pad-text-left inline",children:"TON"})]}),an("div",{className:"color-primary",children:[r,Jt("div",{className:"faded-text pad-text-left inline",children:"USD"})]})]}),an("div",{hidden:n.length<=0,children:[Jt("div",{children:"Transactions"}),n.map((i,f)=>an("div",{children:["Transaction Here (#",f,")"]}))]}),Jt(s0e,{className:"flex-1",children:an(B8,{children:[Jt(e0e,{}),Jt(t0e,{})]})}),Jt(a0e,{className:"stick-to-bottom",children:"BET NOW"})]})})}const l0e="https://raw.githubusercontent.com/faGH/twa-crypto-lottery/main/src/tonconnect-manifest.json",f0e=new fU({defaultOptions:{queries:{refetchOnWindowFocus:!1}}});R4.createRoot(document.getElementById("root")).render(Jt(wG,{manifestUrl:l0e,children:Jt(BD,{client:f0e,children:Jt(u0e,{})})}));
