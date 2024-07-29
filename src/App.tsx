@@ -41,7 +41,7 @@ const TopContainer = styled.div`
 const BottomContainer = styled.div`
   color: var(--cl-color-special);
   padding: calc(var(--cl-block-padding)*2);
-  background-color: red;
+  background-color: var(--cl-background-color-secondary);
   overflow: auto;
 `;
 
