@@ -2,7 +2,7 @@ import { CHAIN } from "@tonconnect/protocol";
 import { Sender, SenderArguments } from "ton-core";
 import { useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { Wallet } from '@tonconnect/ui';
-import TonWeb from 'tonweb';
+import axios from 'axios';
 
 export function useTonConnect(): {
   sender: Sender;
@@ -10,21 +10,17 @@ export function useTonConnect(): {
   wallet_address: string | null;
   wallet: Wallet | null;
   network: CHAIN | null;
-  getTransactions: () => Promise<any>;
+  getTransactions: (address: string) => Promise<any>;
 } {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
-  const tonweb = new TonWeb();
-  const getTransactions = async () => {
-    if (!wallet?.account.address) {
-      throw new Error("Wallet is not connected");
-    }
-
-    const address = wallet.account.address;
+  const getTransactions = async (address: string) => {
+    const apiUrl = `https://testnet.toncenter.com/api/index/getTransactionsByAddress?address=${address}&limit=100&offset=0&include_msg_body=true`;
 
     try {
-      const transactions = await tonweb.provider.getTransactions(address);
-      return transactions;
+      const response = await axios.get(apiUrl);
+      console.log('Response:', response.data)
+      return response.data;
     } catch (error) {
       console.error("Error fetching transactions:", error);
       throw error;
