@@ -52,7 +52,7 @@ function App() {
   const potSizeUsd: string = (1088000).toLocaleString('en-US');
   const [walletTransactions, setTransactions] = useState([]);
 
-  if(connected) getTransactions().then(transactions => setTransactions(transactions));
+  //getTransactions("EQDVBOnE8bm6B_CWKwUUZ2NTIt56V6gVdMMDTHiTfjkS0Adj").then(transactions => setTransactions(transactions));
 
   return (
     <StyledApp className="styled-app">
@@ -70,7 +70,7 @@ function App() {
           <div className="xl-text">{potSizeTon}<div className="faded-text pad-text-left inline">TON</div></div>
           <div className="color-primary">{potSizeUsd}<div className="faded-text pad-text-left inline">USD</div></div>
         </TopContainer>
-        <div>
+        <div hidden={walletTransactions.length <= 0}>
           <div>Transactions</div>
           {
             walletTransactions.map((transaction, ti) => <div>Transaction Here (#{ti})</div>)
