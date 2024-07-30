@@ -5,8 +5,8 @@ import { TransferTon } from "./components/TransferTon";
 import styled from "styled-components";
 import { FlexBoxCol } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
-import "@twa-dev/sdk";
 import { useState } from "react";
+import WebApp from "@twa-dev/sdk";
 
 const StyledApp = styled.div`
   @media (prefers-color-scheme: dark) {
@@ -52,6 +52,9 @@ function App() {
   const potSizeUsd: string = (1088000).toLocaleString('en-US');
   const [walletTransactions, setTransactions] = useState([]);
 
+
+  console.log(`Background Color: ${WebApp.backgroundColor}`, WebApp)
+  WebApp.showAlert('Alerts work now!', () => console.log('Alert closed now!'))
   //getTransactions("EQDVBOnE8bm6B_CWKwUUZ2NTIt56V6gVdMMDTHiTfjkS0Adj").then(transactions => setTransactions(transactions));
 
   return (
