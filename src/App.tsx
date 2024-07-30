@@ -26,7 +26,8 @@ const HeaderContainer = styled.div`
 `;
 
 const SpecialButtonContainer = styled.div`
-  background-color: var(--cl-color-special);
+  background-color: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,8 +54,8 @@ function App() {
   const [walletTransactions, setTransactions] = useState([]);
 
 
-  console.log(`Background Color: ${WebApp.backgroundColor}`, WebApp)
-  WebApp.showAlert('Alerts work now!', () => console.log('Alert closed now!'))
+  //console.log(`Background Color: ${WebApp.backgroundColor}`, WebApp)
+  //WebApp.showAlert('Alerts work now!', () => console.log('Alert closed now!'))
   //getTransactions("EQDVBOnE8bm6B_CWKwUUZ2NTIt56V6gVdMMDTHiTfjkS0Adj").then(transactions => setTransactions(transactions));
 
   return (
