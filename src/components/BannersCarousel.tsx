@@ -15,13 +15,13 @@ export function BannerCarousel(props: {}){
                     <BannerCard
                         title="Jackpot!"
                         subtitle={potSizeTon}
-                        backgroundImageUrl="/banner_2.jpeg"></BannerCard>
+                        backgroundImageUrl="banner_2.jpeg"></BannerCard>
                 </Carousel.Item>
                 <Carousel.Item>
                     <BannerCard
                         title="Provably Fair"
                         subtitle="Trust every play!"
-                        backgroundImageUrl="/banner_1.jpg"></BannerCard>
+                        backgroundImageUrl="banner_1.jpg"></BannerCard>
                 </Carousel.Item>
             </Carousel>
         </StyledContainer>

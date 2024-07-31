@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const CardOverlay = styled.div`
-    border-top-left-radius: var(--app-padding-default);
-    border-bottom-left-radius: var(--app-padding-default);
+    border-radius: var(--app-padding-default);
     position: absolute;
     height: 100%;
     width: 100%;
