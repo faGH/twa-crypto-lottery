@@ -5,7 +5,6 @@ import { BannerCard } from "./BannerCard"
 const StyledContainer = styled.div`
     padding-bottom: var(--app-padding-default);
 `;
-const potSizeTon: string = (7594280).toLocaleString('en-US') + ' TON';
 
 export function BannerCarousel(props: {
     items: Array<{
@@ -19,7 +18,7 @@ export function BannerCarousel(props: {
         <StyledContainer>
             <Carousel controls={false} indicators={false} interval={props.interval || 5000}>
                 {props.items.map(i => 
-                    <Carousel.Item>
+                    <Carousel.Item key={i.title}>
                         <BannerCard
                             title={i.title}
                             subtitle={i.subtitle}

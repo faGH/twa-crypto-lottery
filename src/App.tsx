@@ -18,7 +18,7 @@ const StyledContainer = styled.div`
 const BannerItems = [
   {
     title: "Jackpot!",
-    subtitle: "",
+    subtitle: (7594280).toLocaleString('en-US') + ' TON',
     backgroundImageUrl: "banner_2.jpeg"
   },
   {
