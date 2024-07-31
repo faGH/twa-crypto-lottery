@@ -1160,7 +1160,7 @@ PERFORMANCE OF THIS SOFTWARE.
         position: relative;
     `;return Ht(t,{children:$i(VP,{className:"CardOverlay",children:[Ht(ZP,{children:e.title}),Ht(GP,{children:e.subtitle})]})})}const QP=oi.div`
     padding-bottom: var(--app-padding-default);
-`;function XP(e){return Ht(QP,{children:Ht(B6,{controls:!1,indicators:!1,interval:e.interval||5e3,children:e.items.map(t=>Ht(B6.Item,{children:Ht(YP,{title:t.title,subtitle:t.subtitle,backgroundImageUrl:t.backgroundImageUrl})}))})})}const JP=oi.div`
+`;function XP(e){return Ht(QP,{children:Ht(B6,{controls:!1,indicators:!1,interval:e.interval||5e3,children:e.items.map(t=>Ht(B6.Item,{children:Ht(YP,{title:t.title,subtitle:t.subtitle,backgroundImageUrl:t.backgroundImageUrl})},t.title))})})}const JP=oi.div`
     flex: 1;
     background-color: var(--app-background-color-secondary);
     border-radius: var(--app-padding-default);
@@ -1173,4 +1173,4 @@ PERFORMANCE OF THIS SOFTWARE.
   flex-direction: column;
   height: 100vh;
   padding: var(--app-padding-default);
-`,rL=[{title:"Jackpot!",subtitle:"",backgroundImageUrl:"banner_2.jpeg"},{title:"Provably Fair",subtitle:"Trust every play!",backgroundImageUrl:"banner_1.jpg"}];function nL(){const[e,t]=rt.useState("0d:0h:14m:19s");return $i(tL,{children:[Ht(XI,{title:"Next Draw:",subtitle:e}),Ht(XP,{items:rL}),Ht(eL,{})]})}const iL="https://raw.githubusercontent.com/faGH/twa-crypto-lottery/main/src/tonconnect-manifest.json",oL=new n7({defaultOptions:{queries:{refetchOnWindowFocus:!1}}});wp.createRoot(document.getElementById("root")).render(Ht(jT,{manifestUrl:iL,children:Ht(lM,{client:oL,children:Ht(nL,{})})}));
+`,rL=[{title:"Jackpot!",subtitle:7594280 .toLocaleString("en-US")+" TON",backgroundImageUrl:"banner_2.jpeg"},{title:"Provably Fair",subtitle:"Trust every play!",backgroundImageUrl:"banner_1.jpg"}];function nL(){const[e,t]=rt.useState("0d:0h:14m:19s");return $i(tL,{children:[Ht(XI,{title:"Next Draw:",subtitle:e}),Ht(XP,{items:rL}),Ht(eL,{})]})}const iL="https://raw.githubusercontent.com/faGH/twa-crypto-lottery/main/src/tonconnect-manifest.json",oL=new n7({defaultOptions:{queries:{refetchOnWindowFocus:!1}}});wp.createRoot(document.getElementById("root")).render(Ht(jT,{manifestUrl:iL,children:Ht(lM,{client:oL,children:Ht(nL,{})})}));
