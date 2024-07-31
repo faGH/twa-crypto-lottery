@@ -15,6 +15,18 @@ const StyledContainer = styled.div`
   height: 100vh;
   padding: var(--app-padding-default);
 `;
+const BannerItems = [
+  {
+    title: "Jackpot!",
+    subtitle: "",
+    backgroundImageUrl: "banner_2.jpeg"
+  },
+  {
+    title: "Provably Fair",
+    subtitle: "Trust every play!",
+    backgroundImageUrl: "banner_1.jpg"
+  }
+]
 
 function App(){
   const [nextDrawText, setNextDrawText] = useState("0d:0h:14m:19s");
@@ -22,7 +34,7 @@ function App(){
   return (
     <StyledContainer>
         <WalletConnectHeader title="Next Draw:" subtitle={nextDrawText}></WalletConnectHeader>
-        <BannerCarousel></BannerCarousel>
+        <BannerCarousel items={BannerItems}></BannerCarousel>
         <MenuViewList></MenuViewList>
     </StyledContainer>
   )

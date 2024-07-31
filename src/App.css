@@ -3,8 +3,8 @@
   --app-text-color-primary: var(--tg-theme-text-color, black);
   --app-text-color-secondary: var(--tg-theme-hint-color, rgb(137, 140, 160));
   --app-text-color-pop: var(--tg-theme-button-color, rgb(223,142,61));
-  --app-background-color-primary: var(--tg-theme-bg-color, #f9f9f9);
-  --app-background-color-secondary: var(--tg-theme-secondary-bg-color, white);
+  --app-background-color-primary: var(--tg-theme-bg-color, white);
+  --app-background-color-secondary: var(--tg-theme-secondary-bg-color, #f9f9f9);
   --app-padding-default: 15px;
   --app-padding-small: calc(var(--app-padding)/3);
 

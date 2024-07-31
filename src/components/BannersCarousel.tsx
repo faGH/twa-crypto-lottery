@@ -7,22 +7,25 @@ const StyledContainer = styled.div`
 `;
 const potSizeTon: string = (7594280).toLocaleString('en-US') + ' TON';
 
-export function BannerCarousel(props: {}){
+export function BannerCarousel(props: {
+    items: Array<{
+        title: string,
+        subtitle: string,
+        backgroundImageUrl: string
+    }>,
+    interval?: number
+}){
     return (
         <StyledContainer>
-            <Carousel controls={false} indicators={false}>
-                <Carousel.Item>
-                    <BannerCard
-                        title="Jackpot!"
-                        subtitle={potSizeTon}
-                        backgroundImageUrl="banner_2.jpeg"></BannerCard>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <BannerCard
-                        title="Provably Fair"
-                        subtitle="Trust every play!"
-                        backgroundImageUrl="banner_1.jpg"></BannerCard>
-                </Carousel.Item>
+            <Carousel controls={false} indicators={false} interval={props.interval || 5000}>
+                {props.items.map(i => 
+                    <Carousel.Item>
+                        <BannerCard
+                            title={i.title}
+                            subtitle={i.subtitle}
+                            backgroundImageUrl={i.backgroundImageUrl}></BannerCard>
+                    </Carousel.Item>)
+                }
             </Carousel>
         </StyledContainer>
     )
