@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import "./index.css";
 
 const manifestUrl = "https://raw.githubusercontent.com/faGH/twa-crypto-lottery/main/src/tonconnect-manifest.json";
 const queryClient = new QueryClient({

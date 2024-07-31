@@ -1,5 +1,17 @@
-:root {
-  --tg-theme-bg-color: #efeff3;
-  --tg-theme-button-color: rgb(223,142,61);
-  --tg-theme-button-text-color: white;
+:root{
+  /* Define core styling variables. */
+  --app-text-color-primary: var(--tg-theme-text-color, black);
+  --app-text-color-secondary: var(--tg-theme-hint-color, rgb(137, 140, 160));
+  --app-text-color-pop: var(--tg-theme-button-color, rgb(223,142,61));
+  --app-background-color-primary: var(--tg-theme-bg-color, #f9f9f9);
+  --app-background-color-secondary: var(--tg-theme-secondary-bg-color, white);
+  --app-padding-default: 15px;
+  --app-padding-small: calc(var(--app-padding)/3);
+
+  @media (prefers-color-scheme: dark) {
+    --app-text-color-primary: var(--tg-theme-text-color, white);
+    --app-text-color-secondary: var(--tg-theme-hint-color, rgb(137, 140, 160));
+    --app-background-color-primary: var(--tg-theme-bg-color, black);
+    --app-background-color-secondary: var(--tg-theme-secondary-bg-color, #121214);
+  }
 }
