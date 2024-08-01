@@ -3,6 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { PurchaseList } from './PurchaseList';
 import { useTonConnect } from  '../hooks/useTonConnect'
+import { useState } from "react";
 
 const StyledContainer = styled.div`
     flex: 1;
@@ -11,6 +12,10 @@ const StyledContainer = styled.div`
     padding: var(--app-padding-default);
     overflow: auto;
 `
+const BalanceContainer = styled.div`
+    color: var(--app-text-color-secondary);
+    padding-bottom: var(--app-padding-default);
+`
 
 export function MenuViewList(props: {
     purchaseItems: Array<{
@@ -18,10 +23,12 @@ export function MenuViewList(props: {
         subtitle: string
     }>
 }){
+    const [currentTicketCount, setCurrentTicketCount] = useState(0)
     const { connected } = useTonConnect();
 
     return (
         <StyledContainer>
+            <BalanceContainer>Your Current Bets: {currentTicketCount} TON</BalanceContainer>
             <Tabs defaultActiveKey="bets" className="mb-3" fill>
                 <Tab eventKey="bets" title="Bets" className="flex">
                     <PurchaseList purchaseItems={props.purchaseItems}></PurchaseList>

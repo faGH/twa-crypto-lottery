@@ -30,27 +30,33 @@ const BannerItems = [
 const PurchaseOptions = [
   {
     title: "1 TON",
-    subtitle: "Buy Now!"
+    subtitle: "Buy Now!",
+    amount: 1
   },
   {
     title: "2 TON",
-    subtitle: "Buy Now!"
+    subtitle: "Buy Now!",
+    amount: 2
   },
   {
     title: "5 TON",
-    subtitle: "Buy Now!"
+    subtitle: "Buy Now!",
+    amount: 5
   },
   {
     title: "10 TON",
-    subtitle: "Buy Now!"
+    subtitle: "Buy Now!",
+    amount: 10
   },
   {
     title: "50 TON",
-    subtitle: "Buy Now!"
+    subtitle: "Buy Now!",
+    amount: 50
   },
   {
     title: "100 TON",
-    subtitle: "Buy Now!"
+    subtitle: "Buy Now!",
+    amount: 100
   }
 ]
 

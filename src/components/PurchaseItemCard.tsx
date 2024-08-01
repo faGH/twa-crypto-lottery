@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useTonConnectUI } from '@tonconnect/ui-react';
+import { TonConnectUI } from '@tonconnect/ui';
 
 const CardOverlay = styled.div`
     position: absolute;
@@ -24,13 +26,28 @@ const BetButton = styled.button`
     margin-top: var(--app-padding-default);
     border: None;
     cursor: pointer;
+    transition: 0.25s;
+
+    &:active {
+        transform: scale(1.2);
+        transition: 0.25s;
+    }
 `;
+const ProcessTransaction = async (tonConnector: TonConnectUI, amount: number): Promise<void> => {
+    if(!tonConnector.connected){
+        await tonConnector.connectWallet()
+    }
+
+    alert('Connected!')
+}
 
 export function PurchaseItemCard(props: {
     title: string,
     subtitle: string,
+    amount: number,
     backgroundImageUrl: string
 }){
+    const [tonConnectUI, setOptions] = useTonConnectUI();
     const CardWithBackground = styled.div`
         background-position: center;
         background-repeat: no-repeat;
@@ -46,7 +63,7 @@ export function PurchaseItemCard(props: {
         <CardWithBackground>
             <CardOverlay className="CardOverlay">
                 <PopColorDiv>{props.title}</PopColorDiv>
-                <BetButton>{props.subtitle}</BetButton>
+                <BetButton onClick={() => ProcessTransaction(tonConnectUI, props.amount)}>{props.subtitle}</BetButton>
             </CardOverlay>
         </CardWithBackground>
     )
