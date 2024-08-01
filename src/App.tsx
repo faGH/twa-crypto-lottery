@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import styled from "styled-components";
-import { useTonConnect } from  "./hooks/useTonConnect"
 import { useState } from "react";
 import { WalletConnectHeader } from "./components/WalletConnectHeader"
 import { BannerCarousel } from "./components/BannersCarousel"
@@ -56,14 +55,12 @@ const PurchaseOptions = [
 ]
 
 function App(){
-  const { connected } = useTonConnect();
   const [nextDrawText, setNextDrawText] = useState("0d:0h:14m:19s");
 
   return (
     <StyledContainer>
         <WalletConnectHeader title="Next Draw:" subtitle={nextDrawText}></WalletConnectHeader>
         <BannerCarousel items={BannerItems}></BannerCarousel>
-        Wallet Connected: {connected.toString()} (TODO: Hide the below when no wallet connected.)
         <MenuViewList purchaseItems={PurchaseOptions}></MenuViewList>
     </StyledContainer>
   )

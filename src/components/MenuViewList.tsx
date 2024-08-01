@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { PurchaseList } from './PurchaseList'
+import { PurchaseList } from './PurchaseList';
+import { useTonConnect } from  '../hooks/useTonConnect'
 
 const StyledContainer = styled.div`
     flex: 1;
@@ -17,12 +18,15 @@ export function MenuViewList(props: {
         subtitle: string
     }>
 }){
+    const { connected } = useTonConnect();
+
     return (
         <StyledContainer>
-            <Tabs defaultActiveKey="connect" className="mb-3" fill>
-                <Tab eventKey="connect" title="Bets" className="flex">
+            <Tabs defaultActiveKey={connected ? "bets" : "payouts"} className="mb-3" fill>
+                {connected ?
+                <Tab eventKey="bets" title="Bets" className="flex" hidden={!connected}>
                     <PurchaseList purchaseItems={props.purchaseItems}></PurchaseList>
-                </Tab>
+                </Tab> : <></>}
                 <Tab eventKey="entries" title="Entries" className="flex">
                     All the entries for the current period goes here.
                 </Tab>

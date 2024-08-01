@@ -22,6 +22,8 @@ const BetButton = styled.button`
     padding: var(--app-padding-small) var(--app-padding-default);
     background-color: var(--app-text-color-pop);
     margin-top: var(--app-padding-default);
+    border: None;
+    cursor: pointer;
 `;
 
 export function PurchaseItemCard(props: {
