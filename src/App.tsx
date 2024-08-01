@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import styled from "styled-components";
+import { useTonConnect } from  "./hooks/useTonConnect"
 import { useState } from "react";
 import { WalletConnectHeader } from "./components/WalletConnectHeader"
 import { BannerCarousel } from "./components/BannersCarousel"
@@ -23,19 +24,47 @@ const BannerItems = [
   },
   {
     title: "Provably Fair",
-    subtitle: "Trust every play!",
+    subtitle: "Trust Every Play!",
     backgroundImageUrl: "banner_1.jpg"
+  }
+]
+const PurchaseOptions = [
+  {
+    title: "1 TON",
+    subtitle: "Buy Now!"
+  },
+  {
+    title: "2 TON",
+    subtitle: "Buy Now!"
+  },
+  {
+    title: "5 TON",
+    subtitle: "Buy Now!"
+  },
+  {
+    title: "10 TON",
+    subtitle: "Buy Now!"
+  },
+  {
+    title: "50 TON",
+    subtitle: "Buy Now!"
+  },
+  {
+    title: "100 TON",
+    subtitle: "Buy Now!"
   }
 ]
 
 function App(){
+  const { connected } = useTonConnect();
   const [nextDrawText, setNextDrawText] = useState("0d:0h:14m:19s");
 
   return (
     <StyledContainer>
         <WalletConnectHeader title="Next Draw:" subtitle={nextDrawText}></WalletConnectHeader>
         <BannerCarousel items={BannerItems}></BannerCarousel>
-        <MenuViewList></MenuViewList>
+        Wallet Connected: {connected.toString()} (TODO: Hide the below when no wallet connected.)
+        <MenuViewList purchaseItems={PurchaseOptions}></MenuViewList>
     </StyledContainer>
   )
 }
