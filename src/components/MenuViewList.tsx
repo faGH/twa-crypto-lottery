@@ -20,7 +20,8 @@ const BalanceContainer = styled.div`
 export function MenuViewList(props: {
     purchaseItems: Array<{
         title: string,
-        subtitle: string
+        subtitle: string,
+        amount: number
     }>
 }){
     const [currentTicketCount, setCurrentTicketCount] = useState(0)
