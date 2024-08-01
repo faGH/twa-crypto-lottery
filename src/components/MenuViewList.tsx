@@ -22,11 +22,10 @@ export function MenuViewList(props: {
 
     return (
         <StyledContainer>
-            <Tabs defaultActiveKey={connected ? "bets" : "payouts"} className="mb-3" fill>
-                {connected ?
-                <Tab eventKey="bets" title="Bets" className="flex" hidden={!connected}>
+            <Tabs defaultActiveKey="bets" className="mb-3" fill>
+                <Tab eventKey="bets" title="Bets" className="flex">
                     <PurchaseList purchaseItems={props.purchaseItems}></PurchaseList>
-                </Tab> : <></>}
+                </Tab>
                 <Tab eventKey="entries" title="Entries" className="flex">
                     All the entries for the current period goes here.
                 </Tab>

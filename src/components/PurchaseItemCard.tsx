@@ -37,7 +37,7 @@ export function PurchaseItemCard(props: {
         background-size: cover;
         background-image: url('${props.backgroundImageUrl}');
         height: 10rem;
-        width: 8rem;
+        width: 35vw;
         position: relative;
         margin: var(--app-padding-small);
     `;
