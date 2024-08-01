@@ -59,6 +59,45 @@ const PurchaseOptions = [
     amount: 100
   }
 ]
+const EntriesItems = [
+  {
+    name: 'Jackie Moon',
+    amount: 1,
+    timestamp: '30.01.24'
+  },
+  {
+    name: 'Mugato',
+    amount: 2,
+    timestamp: '30.01.23'
+  },
+  {
+    name: 'Chazz Michael Michaels',
+    amount: 50,
+    timestamp: '30.01.22'
+  },
+  {
+    name: 'Brennan Huff',
+    amount: 3,
+    timestamp: '30.01.22'
+  },
+  {
+    name: 'Frank Ricard',
+    amount: 5,
+    timestamp: '30.01.21'
+  }
+]
+const PayoutItems = [
+  {
+    name: 'Mugato',
+    amount: 2,
+    timestamp: '30.01.22'
+  },
+  {
+    name: 'Chazz Michael Michaels',
+    amount: 50,
+    timestamp: '30.01.22'
+  }
+]
 
 function App(){
   const [nextDrawText, setNextDrawText] = useState("0d:0h:14m:19s");
@@ -67,7 +106,7 @@ function App(){
     <StyledContainer>
         <WalletConnectHeader title="Next Draw:" subtitle={nextDrawText}></WalletConnectHeader>
         <BannerCarousel items={BannerItems}></BannerCarousel>
-        <MenuViewList purchaseItems={PurchaseOptions}></MenuViewList>
+        <MenuViewList purchaseItems={PurchaseOptions} entriesItems={EntriesItems} payoutsItems={PayoutItems}></MenuViewList>
     </StyledContainer>
   )
 }

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useTonConnectUI } from '@tonconnect/ui-react';
 import { TonConnectUI } from '@tonconnect/ui';
 import { Address, toNano, comment, Sender } from "ton";
-import { MerchantAddress, TransactionComment } from "../config";
 import { useTonConnect } from "../hooks/useTonConnect";
+import { MerchantAddress, TransactionComment } from "../config";
 
 const CardOverlay = styled.div`
     position: absolute;
