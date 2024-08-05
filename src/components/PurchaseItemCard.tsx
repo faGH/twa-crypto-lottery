@@ -3,7 +3,11 @@ import { useTonConnectUI } from '@tonconnect/ui-react';
 import { TonConnectUI } from '@tonconnect/ui';
 import { Address, toNano, comment, Sender } from "ton";
 import { useTonConnect } from "../hooks/useTonConnect";
-import { MerchantAddress, TransactionComment } from "../config";
+import { useContext } from "react";
+import { UserContext } from "../App";
+import { IState } from "../interfaces/IState";
+import { IStateReducerAction } from "../interfaces/IStateReducerAction";
+import { StateReducerActionType } from "../enums/StateReducerActionTypes";
 
 const CardOverlay = styled.div`
     position: absolute;
@@ -36,19 +40,37 @@ const BetButton = styled.button`
         transition: 0.25s;
     }
 `;
-const ProcessTransaction = async (tonConnector: TonConnectUI, amount: number, sender: Sender): Promise<void> => {
+const ProcessTransaction = async (
+    tonConnector: TonConnectUI,
+    amount: number,
+    sender: Sender,
+    stateReducer: [IState, (React.Dispatch<IStateReducerAction> | undefined)?]): Promise<void> => {
+    const [state, dispatch] = stateReducer;
     if(!tonConnector.connected){
-        await tonConnector.connectWallet()
+        await tonConnector.connectWallet();
     }
 
     await sender.send({
-        to: Address.parse(MerchantAddress),
+        to: Address.parse(state.destinationWalletAddress),
         value: toNano(amount),
-        body: comment(TransactionComment)
+        body: comment(state.defaultTransactionComment)
     });
 
-    // TODO: Update balance.
+    dispatch?.({
+        type: StateReducerActionType.AddToBalance,
+        value: amount
+    });
 }
+
+const CardWithBackground = styled.div`
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 10rem;
+    width: 35vw;
+    position: relative;
+    margin: var(--app-padding-small);
+    `;
 
 export function PurchaseItemCard(props: {
     title: string,
@@ -58,22 +80,13 @@ export function PurchaseItemCard(props: {
 }){
     const [tonConnectUI, setOptions] = useTonConnectUI();
     const { sender } = useTonConnect();
-    const CardWithBackground = styled.div`
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url('${props.backgroundImageUrl}');
-        height: 10rem;
-        width: 35vw;
-        position: relative;
-        margin: var(--app-padding-small);
-    `;
+    const stateReducer = useContext(UserContext);
 
     return (
-        <CardWithBackground>
+        <CardWithBackground style={{backgroundImage: `url(${props.backgroundImageUrl})`}}>
             <CardOverlay className="CardOverlay">
                 <PopColorDiv>{props.title}</PopColorDiv>
-                <BetButton onClick={() => ProcessTransaction(tonConnectUI, props.amount, sender)}>{props.subtitle}</BetButton>
+                <BetButton onClick={() => ProcessTransaction(tonConnectUI, props.amount, sender, stateReducer)}>{props.subtitle}</BetButton>
             </CardOverlay>
         </CardWithBackground>
     )

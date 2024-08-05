@@ -5,7 +5,8 @@ import { PurchaseList } from './PurchaseList';
 import { EntriesList } from "./EntriesList";
 import { PayoutsList } from "./PayoutsList";
 import { useTonConnect } from  '../hooks/useTonConnect'
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../App";
 
 const StyledContainer = styled.div`
     flex: 1;
@@ -37,11 +38,11 @@ export function MenuViewList(props: {
     }>
 }){
     const { connected, getTransactions } = useTonConnect();
-    const [balance, setBalance] = useState(0)
+    const [state, dispatch] = useContext(UserContext);
 
     return (
         <StyledContainer>
-            <BalanceContainer>Your Current Bets: {balance.toLocaleString('en-US')} TON</BalanceContainer>
+            <BalanceContainer>Your Current Bets: {state.userBalance.toLocaleString('en-US')} TON</BalanceContainer>
             <Tabs defaultActiveKey="bets" className="mb-3" fill>
                 <Tab eventKey="bets" title="Bets" className="flex">
                     <PurchaseList purchaseItems={props.purchaseItems}></PurchaseList>

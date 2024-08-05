@@ -1,10 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useReducer } from "react";
 import { WalletConnectHeader } from "./components/WalletConnectHeader"
 import { BannerCarousel } from "./components/BannersCarousel"
 import { MenuViewList } from "./components/MenuViewList"
+import { InitialState } from "./config";
+import { IStateReducerAction } from "./interfaces/IStateReducerAction";
+import { IState } from "./interfaces/IState";
+import { StateReducer } from "./reducers/StateReducer";
 
 const StyledContainer = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -99,15 +103,19 @@ const PayoutItems = [
   }
 ]
 
+export const UserContext = React.createContext<[IState, React.Dispatch<IStateReducerAction>?]>([InitialState,])
+
 function App(){
-  const [nextDrawText, setNextDrawText] = useState("0d:0h:14m:19s");
+  const stateReducer = useReducer(StateReducer, InitialState);
 
   return (
-    <StyledContainer>
-        <WalletConnectHeader title="Next Draw:" subtitle={nextDrawText}></WalletConnectHeader>
-        <BannerCarousel items={BannerItems}></BannerCarousel>
-        <MenuViewList purchaseItems={PurchaseOptions} entriesItems={EntriesItems} payoutsItems={PayoutItems}></MenuViewList>
-    </StyledContainer>
+    <UserContext.Provider value={stateReducer}>
+      <StyledContainer>
+          <WalletConnectHeader></WalletConnectHeader>
+          <BannerCarousel items={BannerItems}></BannerCarousel>
+          <MenuViewList purchaseItems={PurchaseOptions} entriesItems={EntriesItems} payoutsItems={PayoutItems}></MenuViewList>
+      </StyledContainer>
+    </UserContext.Provider>
   )
 }
 

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { TonConnectButton } from "@tonconnect/ui-react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../App";
 
 const StyledContainer = styled.div`
     display: flex;
@@ -13,15 +15,34 @@ const FlexSpacer = styled.div`
     flex: 1;
 `;
 
-export function WalletConnectHeader(props: {
-    title: string,
-    subtitle: string
-}){
+function formatTimeDelta(startDate: Date, endDate: Date): string {
+    const deltaMilliseconds = Math.abs(endDate.getTime() - startDate.getTime());
+    const days = Math.floor(deltaMilliseconds / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((deltaMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((deltaMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((deltaMilliseconds % (1000 * 60)) / 1000);
+
+    return `${days}d:${hours}h:${minutes}m:${seconds}s`;
+}
+
+export function WalletConnectHeader(){
+    const [nextDrawText, setNextDrawText] = useState("0d:0h:0m:0s");
+    const [state, dispatch] = useContext(UserContext);
+    useEffect(() => {
+        const updateInterval = setInterval(() => {
+            const updatedDrawTime: string = formatTimeDelta(new Date(), state.periodEndDate);
+            //console.log('Doing things...')
+            setNextDrawText(updatedDrawTime);
+        }, 1000);
+
+        return () => clearInterval(updateInterval);
+    }, [])
+
     return (
         <StyledContainer>
             <div>
-                <SecondaryColorDiv>{props.title}</SecondaryColorDiv>
-                <div>{props.subtitle}</div>
+                <SecondaryColorDiv>Next Draw:</SecondaryColorDiv>
+                <div>{nextDrawText}</div>
             </div>
             <FlexSpacer></FlexSpacer>
             <TonConnectButton />

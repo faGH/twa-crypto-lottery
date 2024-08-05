@@ -20,24 +20,23 @@ const SecondaryColorDiv = styled.div`
     color: white;
     text-shadow: 0px 0px var(--app-padding-default) black;
 `;
+const CardWithBackground = styled.div`
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 175px;
+    border-radius: var(--app-padding-default);
+    position: relative;
+`;
 
 export function BannerCard(props: {
     title: string,
     subtitle: string,
     backgroundImageUrl: string
 }){
-    const CardWithBackground = styled.div`
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url('${props.backgroundImageUrl}');
-        height: 175px;
-        border-radius: var(--app-padding-default);
-        position: relative;
-    `;
 
     return (
-        <CardWithBackground>
+        <CardWithBackground style={{backgroundImage: `url(${props.backgroundImageUrl})`}}>
             <CardOverlay className="CardOverlay">
                 <PopColorDiv>{props.title}</PopColorDiv>
                 <SecondaryColorDiv>{props.subtitle}</SecondaryColorDiv>
