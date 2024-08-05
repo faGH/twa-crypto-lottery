@@ -4,9 +4,8 @@ import Tabs from 'react-bootstrap/Tabs';
 import { PurchaseList } from './PurchaseList';
 import { EntriesList } from "./EntriesList";
 import { PayoutsList } from "./PayoutsList";
-import { useTonConnect } from  '../hooks/useTonConnect'
-import { useState, useContext } from "react";
-import { UserContext } from "../App";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
 const StyledContainer = styled.div`
     flex: 1;
@@ -20,38 +19,21 @@ const BalanceContainer = styled.div`
     padding-bottom: var(--app-padding-default);
 `
 
-export function MenuViewList(props: {
-    purchaseItems: Array<{
-        title: string,
-        subtitle: string,
-        amount: number
-    }>,
-    entriesItems: Array<{
-        name: string,
-        amount: number,
-        timestamp: string
-    }>,
-    payoutsItems: Array<{
-        name: string,
-        amount: number,
-        timestamp: string
-    }>
-}){
-    const { connected, getTransactions } = useTonConnect();
+export function MenuViewList(){
     const [state, dispatch] = useContext(UserContext);
 
     return (
         <StyledContainer>
-            <BalanceContainer>Your Current Bets: {state.userBalance.toLocaleString('en-US')} TON</BalanceContainer>
+            <BalanceContainer>Your Current Bets: {state.userBalance.toLocaleString()} TON</BalanceContainer>
             <Tabs defaultActiveKey="bets" className="mb-3" fill>
                 <Tab eventKey="bets" title="Bets" className="flex">
-                    <PurchaseList purchaseItems={props.purchaseItems}></PurchaseList>
+                    <PurchaseList></PurchaseList>
                 </Tab>
                 <Tab eventKey="entries" title="Entries" className="flex">
-                    <EntriesList items={props.entriesItems}></EntriesList>
+                    <EntriesList></EntriesList>
                 </Tab>
                 <Tab eventKey="payouts" title="Payouts" className="flex">
-                    <PayoutsList items={props.payoutsItems}></PayoutsList>
+                    <PayoutsList></PayoutsList>
                 </Tab>
             </Tabs>
         </StyledContainer>

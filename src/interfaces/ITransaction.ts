@@ -4,6 +4,7 @@ export interface ITransaction{
     sourceAddress: string,
     destinationAddress: string,
     comment: string,
-    value: number,
-    type: TransactionType
+    amount: number,
+    type: TransactionType,
+    timestamp: Date
 }

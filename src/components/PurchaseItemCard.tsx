@@ -40,12 +40,22 @@ const BetButton = styled.button`
         transition: 0.25s;
     }
 `;
+const CardWithBackground = styled.div`
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 10rem;
+    width: 35vw;
+    position: relative;
+    margin: var(--app-padding-small);
+`;
 const ProcessTransaction = async (
     tonConnector: TonConnectUI,
     amount: number,
     sender: Sender,
     stateReducer: [IState, (React.Dispatch<IStateReducerAction> | undefined)?]): Promise<void> => {
     const [state, dispatch] = stateReducer;
+
     if(!tonConnector.connected){
         await tonConnector.connectWallet();
     }
@@ -61,16 +71,6 @@ const ProcessTransaction = async (
         value: amount
     });
 }
-
-const CardWithBackground = styled.div`
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 10rem;
-    width: 35vw;
-    position: relative;
-    margin: var(--app-padding-small);
-    `;
 
 export function PurchaseItemCard(props: {
     title: string,

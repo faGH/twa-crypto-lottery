@@ -1,15 +1,13 @@
-import { PurchaseItemCard } from "./PurchaseItemCard"
+import { useContext } from "react";
+import { PurchaseItemCard } from "../PurchaseItemCard"
+import { UserContext } from "../../App";
 
-export function PurchaseList(props: {
-    purchaseItems: Array<{
-        title: string,
-        subtitle: string,
-        amount: number
-    }>
-}){
+export function PurchaseList(){
+    const [state, dispatch] = useContext(UserContext);
+
     return (
         <>
-            {props.purchaseItems.map(i =>
+            {state.purchaseOptions.map(i =>
                 <PurchaseItemCard
                     key={i.title}
                     amount={i.amount}

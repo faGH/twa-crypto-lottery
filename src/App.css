@@ -51,3 +51,7 @@ tbody, td, tfoot, th, thead, tr {
 .table th{
   color: var(--app-text-color-pop);
 }
+
+.progress-bar {
+  background-color: var(--app-text-color-pop);
+}
