@@ -73,9 +73,12 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 .table tr > td:first-of-type > div{
-  width: 35vw;            /* Set the width of the box */
-  overflow: hidden;        /* Hide the overflow text */
-  white-space: nowrap;     /* Prevent the text from wrapping */
-  text-overflow: ellipsis; /* Show ellipsis (...) for overflow text */
-  padding: 5px;            /* Optional: Adding padding for better readability */
+  width: 35vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.table tbody tr:nth-child(even){
+  filter: opacity(0.5);
 }
