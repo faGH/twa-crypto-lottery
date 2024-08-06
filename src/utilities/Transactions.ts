@@ -65,8 +65,28 @@ export const GetTransactionsSinceFromTime = (startTime: Date, transactions: Arra
 }
 
 export const GetAccumAmountOfIncomingTransactionsFromTime = (startTime: Date, transactions: Array<ITransaction>): number => {
-    const sum: number = GetTransactionsSinceFromTime(startTime, transactions)
-        .filter(t => t.type == TransactionType.IncomingToMerchant)
+    const incomingTransactionsForCurrentPeriod: Array<ITransaction> = GetTransactionsSinceFromTime(startTime, transactions)
+        .filter(t => t.type == TransactionType.IncomingToMerchant);
+
+    if (incomingTransactionsForCurrentPeriod.length <= 0)
+        return 0;
+
+    const sum: number = incomingTransactionsForCurrentPeriod
+        .map(t => t.amount)
+        .reduce((l, r) => l + r);
+
+    return sum;
+}
+
+export const GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress = (startTime: Date, transactions: Array<ITransaction>, partialAddress: string): number => {
+    const incomingTransactionsForCurrentPeriod: Array<ITransaction> = GetTransactionsSinceFromTime(startTime, transactions)
+        .filter(t => t.type == TransactionType.IncomingToMerchant);
+
+    if (incomingTransactionsForCurrentPeriod.length <= 0 || partialAddress.length <= 0)
+        return 0;
+
+    const sum: number = incomingTransactionsForCurrentPeriod
+        .filter(t => t.sourceAddress.indexOf(partialAddress) > -1)
         .map(t => t.amount)
         .reduce((l, r) => l + r);
 
