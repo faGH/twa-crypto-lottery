@@ -10,14 +10,16 @@ import { useTonAddress } from "@tonconnect/ui-react";
 export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IStateReducerAction>]): void => {
     const [state, dispatch] = stateReducer;
     const { wallet_address, wallet, tonConnectUI } = useTonConnect();
-    const friendlyAddress = useTonAddress()
+    const friendlyAddress = useTonAddress();
+    const rawAddress = useTonAddress(false);
 
     useEffect(() => {
         if(!wallet_address) return;
 
         alert(JSON.stringify({
             "wallet address": tonConnectUI?.wallet?.account.address,
-            "friendlyAddress": friendlyAddress
+            "friendlyAddress": friendlyAddress,
+            "rawAddress": rawAddress
         }));
     }, [wallet_address]);
 
