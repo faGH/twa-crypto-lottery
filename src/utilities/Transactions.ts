@@ -3,7 +3,6 @@ import { Address, toNano, comment, Sender } from "ton";
 import { IState } from "../interfaces/IState";
 import { IStateReducerAction } from "../interfaces/IStateReducerAction";
 import { StateReducerActionType } from "../enums/StateReducerActionTypes";
-import TonWeb from "tonweb";
 import { ITransaction } from '../interfaces/ITransaction';
 import { TransactionType } from '../enums/TransactionTypes';
 

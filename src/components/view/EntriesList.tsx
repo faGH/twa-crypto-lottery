@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { UserContext } from '../../App';
 import { ITransaction } from '../../interfaces/ITransaction';
 import { TransactionType } from '../../enums/TransactionTypes';
+import { GetTransactionsSinceFromTime } from '../../utilities/Transactions';
 
 export function EntriesList(){
     const [state, dispatch] = useContext(UserContext);
@@ -10,6 +11,7 @@ export function EntriesList(){
         .transactionsQuery
         .data
         .filter(t => t.type == TransactionType.IncomingToMerchant);
+    const transactionsForCurrentPeriod: Array<ITransaction> = GetTransactionsSinceFromTime(state.periodStartDate, incomingTransactions);
     const emptyTableBody =  Array
         .from({ length: 3 }, (_, index) => index)
         .map((i) => <tr key={i}>
@@ -29,9 +31,9 @@ export function EntriesList(){
                     </tr>
                 </thead>
                 <tbody>
-                    {incomingTransactions.length <= 0 ?
+                    {transactionsForCurrentPeriod.length <= 0 ?
                         emptyTableBody : 
-                        incomingTransactions.map(i =>
+                        transactionsForCurrentPeriod.map(i =>
                             <tr key={`${i.timestamp}_${i.sourceAddress}`}>
                                 <td><div title={i.sourceAddress}>{i.sourceAddress}</div></td>
                                 <td>{i.amount}</td>

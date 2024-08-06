@@ -4,9 +4,14 @@ import { IStateReducerAction } from "../interfaces/IStateReducerAction";
 import { StateReducerActionType } from "../enums/StateReducerActionTypes";
 import { GetAccumAmountOfTransactionsFromTime, GetTransactionsForAddress } from "../utilities/Transactions";
 import { ITransaction } from "../interfaces/ITransaction";
+import { useTonConnect } from "./useTonConnect";
 
 export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IStateReducerAction>]): void => {
     const [state, dispatch] = stateReducer;
+    const { wallet_address } = useTonConnect();
+
+    if(!!wallet_address)
+        alert(`Wallet Address: ${wallet_address}`)
 
     useEffect(() => {
         dispatch({
