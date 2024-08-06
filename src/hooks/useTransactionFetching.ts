@@ -8,12 +8,12 @@ import { useTonConnect } from "./useTonConnect";
 
 export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IStateReducerAction>]): void => {
     const [state, dispatch] = stateReducer;
-    const { wallet_address, wallet } = useTonConnect();
+    const { wallet_address, wallet, tonConnectUI } = useTonConnect();
 
     useEffect(() => {
         if(!wallet_address) return;
 
-        alert(JSON.stringify(wallet?.account));
+        alert(JSON.stringify(tonConnectUI?.wallet?.account.address));
     }, [wallet_address]);
 
     useEffect(() => {
