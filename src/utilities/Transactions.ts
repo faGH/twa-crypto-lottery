@@ -85,12 +85,17 @@ export const GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress = (s
     if (incomingTransactionsForCurrentPeriod.length <= 0 || partialAddress.length <= 0)
         return 0;
 
-    const sum: number = incomingTransactionsForCurrentPeriod
-        .filter(t => t.sourceAddress.indexOf(partialAddress) > -1)
-        .map(t => t.amount)
-        .reduce((l, r) => l + r);
+    try{
+        const sum: number = incomingTransactionsForCurrentPeriod
+            .filter(t => t.sourceAddress.indexOf(partialAddress) > -1)
+            .map(t => t.amount)
+            .reduce((l, r) => l + r);
 
-    alert(`Sum: ${sum}`)
+        alert(`Sum: ${sum}`)
 
-    return sum;
+        return sum;
+    }
+    catch(e){
+        alert(JSON.stringify(e))
+    }
 }
