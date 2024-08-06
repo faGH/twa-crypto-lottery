@@ -90,5 +90,7 @@ export const GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress = (s
         .map(t => t.amount)
         .reduce((l, r) => l + r);
 
+    alert(`Sum: ${sum}`)
+
     return sum;
 }

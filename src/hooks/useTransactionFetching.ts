@@ -13,6 +13,7 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
     useEffect(() => {
         const userBetsForCurrentPeriod: number = GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress(state.periodStartDate, state.transactionsQuery.data, friendlyAddress);
 
+        alert(`Dispatching state update: ${userBetsForCurrentPeriod}`)
         dispatch({
             type: StateReducerActionType.SetBalance,
             value: userBetsForCurrentPeriod
