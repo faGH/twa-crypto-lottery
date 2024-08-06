@@ -97,5 +97,6 @@ export const GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress = (s
     }
     catch(e){
         alert(JSON.stringify(e))
+        return 0;
     }
 }
