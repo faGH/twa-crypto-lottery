@@ -10,22 +10,9 @@ export function useTonConnect(): {
   wallet_address: string | null;
   wallet: Wallet | null;
   network: CHAIN | null;
-  getTransactions: (address: string) => Promise<any>;
 } {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
-  const getTransactions = async (address: string) => {
-    const apiUrl = `https://testnet.toncenter.com/api/index/getTransactionsByAddress?address=${address}&limit=100&offset=0&include_msg_body=true`;
-
-    try {
-      const response = await axios.get(apiUrl);
-      console.log('Response:', response.data)
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching transactions:", error);
-      throw error;
-    }
-  };
 
   return {
     sender: {
@@ -45,7 +32,6 @@ export function useTonConnect(): {
     connected: !!wallet?.account.address,
     wallet_address: wallet?.account.address ?? null,
     wallet,
-    network: wallet?.account.chain ?? null,
-    getTransactions
+    network: wallet?.account.chain ?? null
   };
 }
