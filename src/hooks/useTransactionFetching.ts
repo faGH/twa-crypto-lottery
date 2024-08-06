@@ -10,8 +10,11 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
     const [state, dispatch] = stateReducer;
     const { wallet_address } = useTonConnect();
 
-    if(!!wallet_address)
-        alert(`Wallet Address: ${wallet_address}`)
+    useEffect(() => {
+        if(!wallet_address) return;
+
+        alert(`Wallet Address: ${wallet_address}`);
+    }, [wallet_address]);
 
     useEffect(() => {
         dispatch({

@@ -41,7 +41,7 @@ export const InitialState: IState = {
             amount: 100
         }
     ],
-    defaultMainView: MainViews.Entries,
+    defaultMainView: MainViews.Bets,
     transactionsQuery: {
         isFetching: false,
         refreshIntervalInMs: (1000 * 10),
