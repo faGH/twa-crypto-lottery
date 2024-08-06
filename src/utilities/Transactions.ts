@@ -64,8 +64,9 @@ export const GetTransactionsSinceFromTime = (startTime: Date, transactions: Arra
     return recentTransactions;
 }
 
-export const GetAccumAmountOfTransactionsFromTime = (startTime: Date, transactions: Array<ITransaction>): number => {
+export const GetAccumAmountOfIncomingTransactionsFromTime = (startTime: Date, transactions: Array<ITransaction>): number => {
     const sum: number = GetTransactionsSinceFromTime(startTime, transactions)
+        .filter(t => t.type == TransactionType.IncomingToMerchant)
         .map(t => t.amount)
         .reduce((l, r) => l + r);
 

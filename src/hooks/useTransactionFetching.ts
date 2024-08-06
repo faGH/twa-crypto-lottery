@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { IState } from "../interfaces/IState";
 import { IStateReducerAction } from "../interfaces/IStateReducerAction";
 import { StateReducerActionType } from "../enums/StateReducerActionTypes";
-import { GetAccumAmountOfTransactionsFromTime, GetTransactionsForAddress } from "../utilities/Transactions";
+import { GetAccumAmountOfIncomingTransactionsFromTime, GetTransactionsForAddress } from "../utilities/Transactions";
 import { ITransaction } from "../interfaces/ITransaction";
 import { useTonConnect } from "./useTonConnect";
 
@@ -30,7 +30,7 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
                 });
                 dispatch({
                     type: StateReducerActionType.SetJackpotAmount,
-                    value: GetAccumAmountOfTransactionsFromTime(state.periodStartDate, transactions)
+                    value: GetAccumAmountOfIncomingTransactionsFromTime(state.periodStartDate, transactions)
                 });
             })
             .catch(console.error)
