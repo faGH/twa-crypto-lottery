@@ -55,3 +55,27 @@ tbody, td, tfoot, th, thead, tr {
 .progress-bar {
   background-color: var(--app-text-color-pop);
 }
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.table.empty tbody{
+  animation: pulse 1s infinite;
+}
+
+.table tr > td:first-of-type > div{
+  width: 35vw;            /* Set the width of the box */
+  overflow: hidden;        /* Hide the overflow text */
+  white-space: nowrap;     /* Prevent the text from wrapping */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflow text */
+  padding: 5px;            /* Optional: Adding padding for better readability */
+}

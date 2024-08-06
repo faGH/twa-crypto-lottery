@@ -6,6 +6,7 @@ import { EntriesList } from "./EntriesList";
 import { PayoutsList } from "./PayoutsList";
 import { useContext } from "react";
 import { UserContext } from "../../App";
+import { MainViews } from "../../enums/MainViews";
 
 const StyledContainer = styled.div`
     flex: 1;
@@ -25,14 +26,14 @@ export function MenuViewList(){
     return (
         <StyledContainer>
             <BalanceContainer>Your Current Bets: {state.userBalance.toLocaleString()} TON</BalanceContainer>
-            <Tabs defaultActiveKey="bets" className="mb-3" fill>
-                <Tab eventKey="bets" title="Bets" className="flex">
+            <Tabs defaultActiveKey={state.defaultMainView} className="mb-3" fill>
+                <Tab eventKey={MainViews.Bets} title="Bets" className="flex">
                     <PurchaseList></PurchaseList>
                 </Tab>
-                <Tab eventKey="entries" title="Entries" className="flex">
+                <Tab eventKey={MainViews.Entries} title="Entries" className="flex">
                     <EntriesList></EntriesList>
                 </Tab>
-                <Tab eventKey="payouts" title="Payouts" className="flex">
+                <Tab eventKey={MainViews.Payouts} title="Payouts" className="flex">
                     <PayoutsList></PayoutsList>
                 </Tab>
             </Tabs>

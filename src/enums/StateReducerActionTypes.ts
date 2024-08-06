@@ -1,4 +1,6 @@
 export enum StateReducerActionType{
     SetBalance,
-    AddToBalance
+    AddToBalance,
+    SetTransactionsIsLoading,
+    SetTransactionsData
 }

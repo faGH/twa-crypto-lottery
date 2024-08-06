@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PurchaseItemCard } from "../PurchaseItemCard"
+import { PurchaseItemCard } from "./PurchaseItemCard"
 import { UserContext } from "../../App";
 
 export function PurchaseList(){

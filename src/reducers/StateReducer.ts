@@ -8,6 +8,10 @@ export const StateReducer = (state: IState, action: IStateReducerAction): IState
             return { ...state, userBalance: action.value };
         case StateReducerActionType.AddToBalance:
             return { ...state, userBalance: state.userBalance + action.value };
+        case StateReducerActionType.SetTransactionsIsLoading:
+            return { ...state, transactionsQuery: { ...state.transactionsQuery, isFetching: action.value } };
+        case StateReducerActionType.SetTransactionsData:
+            return { ...state, transactionsQuery: { ...state.transactionsQuery, data: action.value } };
         default:
             return state;
     }

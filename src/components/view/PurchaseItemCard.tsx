@@ -1,13 +1,9 @@
 import styled from "styled-components";
 import { useTonConnectUI } from '@tonconnect/ui-react';
-import { TonConnectUI } from '@tonconnect/ui';
-import { Address, toNano, comment, Sender } from "ton";
-import { useTonConnect } from "../hooks/useTonConnect";
+import { useTonConnect } from "../../hooks/useTonConnect";
 import { useContext } from "react";
-import { UserContext } from "../App";
-import { IState } from "../interfaces/IState";
-import { IStateReducerAction } from "../interfaces/IStateReducerAction";
-import { StateReducerActionType } from "../enums/StateReducerActionTypes";
+import { UserContext } from "../../App";
+import { ProcessTransaction } from "../../utilities/Transactions";
 
 const CardOverlay = styled.div`
     position: absolute;
@@ -49,28 +45,6 @@ const CardWithBackground = styled.div`
     position: relative;
     margin: var(--app-padding-small);
 `;
-const ProcessTransaction = async (
-    tonConnector: TonConnectUI,
-    amount: number,
-    sender: Sender,
-    stateReducer: [IState, (React.Dispatch<IStateReducerAction> | undefined)?]): Promise<void> => {
-    const [state, dispatch] = stateReducer;
-
-    if(!tonConnector.connected){
-        await tonConnector.connectWallet();
-    }
-
-    await sender.send({
-        to: Address.parse(state.destinationWalletAddress),
-        value: toNano(amount),
-        body: comment(state.defaultTransactionComment)
-    });
-
-    dispatch?.({
-        type: StateReducerActionType.AddToBalance,
-        value: amount
-    });
-}
 
 export function PurchaseItemCard(props: {
     title: string,

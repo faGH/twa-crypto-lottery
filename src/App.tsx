@@ -9,6 +9,7 @@ import { IStateReducerAction } from "./interfaces/IStateReducerAction";
 import { IState } from "./interfaces/IState";
 import { StateReducer } from "./reducers/StateReducer";
 import { BannerCarousel } from "./components/banner/BannersCarousel";
+import { useTransactionsFetching } from "./hooks/useTransactionFetching";
 
 const StyledContainer = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -24,6 +25,7 @@ export const UserContext = React.createContext<[IState, React.Dispatch<IStateRed
 
 function App(){
   const stateReducer = useReducer(StateReducer, InitialState);
+  useTransactionsFetching(stateReducer);
 
   return (
     <UserContext.Provider value={stateReducer}>
