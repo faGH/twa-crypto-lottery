@@ -57,3 +57,18 @@ export const GetTransactionsForAddress = async (address: string, useTestNetwork:
 
     return mappedTransactions;
 }
+
+export const GetTransactionsSinceFromTime = (startTime: Date, transactions: Array<ITransaction>): Array<ITransaction> => {
+    const recentTransactions: Array<ITransaction> = transactions
+        .filter(t => t.timestamp >= startTime);
+
+    return recentTransactions;
+}
+
+export const GetAccumAmountOfTransactionsFromTime = (startTime: Date, transactions: Array<ITransaction>): number => {
+    const sum: number = GetTransactionsSinceFromTime(startTime, transactions)
+        .map(t => t.amount)
+        .reduce((l, r) => l + r);
+
+    return sum;
+}

@@ -8,18 +8,6 @@ export const InitialState: IState = {
     periodStartDate: GetFirstOfCurrentMonth(),
     periodEndDate: GetFirstOfNextMonth(),
     defaultTransactionComment: "Made with ♥ by Dean Martin",
-    carouselItems: [
-        {
-            title: "Jackpot!",
-            subtitle: (7594280).toLocaleString() + ' TON',
-            backgroundImageUrl: "banner_2.jpeg"
-        },
-        {
-            title: "Provably Fair",
-            subtitle: "Trust Every Play!",
-            backgroundImageUrl: "banner_1.jpg"
-        }
-    ],
     carouselInvervalInMs: 5000,
     purchaseOptions: [
         {
@@ -59,5 +47,6 @@ export const InitialState: IState = {
         refreshIntervalInMs: (1000 * 10),
         data: []
     },
-    enableTonTestNetwork: true
+    enableTonTestNetwork: true,
+    jackpotAmount: 0
 }

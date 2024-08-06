@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { IState } from "../interfaces/IState";
 import { IStateReducerAction } from "../interfaces/IStateReducerAction";
 import { StateReducerActionType } from "../enums/StateReducerActionTypes";
-import { GetTransactionsForAddress } from "../utilities/Transactions";
+import { GetAccumAmountOfTransactionsFromTime, GetTransactionsForAddress } from "../utilities/Transactions";
 import { ITransaction } from "../interfaces/ITransaction";
 
 export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IStateReducerAction>]): void => {
@@ -19,6 +19,10 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
                 dispatch({
                     type: StateReducerActionType.SetTransactionsData,
                     value: transactions
+                });
+                dispatch({
+                    type: StateReducerActionType.SetJackpotAmount,
+                    value: GetAccumAmountOfTransactionsFromTime(state.periodStartDate, transactions)
                 });
             })
             .catch(console.error)

@@ -12,6 +12,8 @@ export const StateReducer = (state: IState, action: IStateReducerAction): IState
             return { ...state, transactionsQuery: { ...state.transactionsQuery, isFetching: action.value } };
         case StateReducerActionType.SetTransactionsData:
             return { ...state, transactionsQuery: { ...state.transactionsQuery, data: action.value } };
+        case StateReducerActionType.SetJackpotAmount:
+            return { ...state, jackpotAmount: action.value };
         default:
             return state;
     }
