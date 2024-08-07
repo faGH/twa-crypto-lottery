@@ -4,7 +4,7 @@ import { GetFirstOfCurrentMonth, GetFirstOfNextMonth } from "./utilities/DateTim
 
 export const InitialState: IState = {
     userBalance: 0,
-    destinationFriendlyWalletAddress: "EQDVBOnE8bm6B_CWKwUUZ2NTIt56V6gVdMMDTHiTfjkS0Adj",
+    destinationFriendlyWalletAddress: "EQBMnU6Ka3sT07YmFOQGync85bXVN4uyBDlGzb5VvURe3Hm4",
     periodStartDate: GetFirstOfCurrentMonth(),
     periodEndDate: GetFirstOfNextMonth(),
     defaultTransactionComment: "Made with ♥ by Dean Martin",
