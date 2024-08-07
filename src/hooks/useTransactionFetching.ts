@@ -43,5 +43,5 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
                     value: false
                 });
             });
-    }, [])
+    }, [state.transactionsQuery.manualTriggerCount])
 }

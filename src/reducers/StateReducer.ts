@@ -14,6 +14,8 @@ export const StateReducer = (state: IState, action: IStateReducerAction): IState
             return { ...state, transactionsQuery: { ...state.transactionsQuery, data: action.value } };
         case StateReducerActionType.SetJackpotAmount:
             return { ...state, jackpotAmount: action.value };
+        case StateReducerActionType.IncrementManualTransactionTriggerCount:
+            return { ...state, transactionsQuery: { ...state.transactionsQuery, manualTriggerCount: state.transactionsQuery.manualTriggerCount + action.value } }; 
         default:
             return state;
     }

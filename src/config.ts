@@ -45,7 +45,8 @@ export const InitialState: IState = {
     transactionsQuery: {
         isFetching: false,
         refreshIntervalInMs: (1000 * 10),
-        data: []
+        data: [],
+        manualTriggerCount: 0
     },
     enableTonTestNetwork: true,
     jackpotAmount: 0

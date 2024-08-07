@@ -24,8 +24,8 @@ export const ProcessTransaction = async (
     });
 
     dispatch?.({
-        type: StateReducerActionType.AddToBalance,
-        value: amount
+        type: StateReducerActionType.IncrementManualTransactionTriggerCount,
+        value: 1
     });
 }
 
@@ -86,17 +86,17 @@ export const GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress = (s
         return 0;
 
     try{
-        const sum: number = incomingTransactionsForCurrentPeriod
+        const incomingTransactionAmountsForCurrentPeriodForUser: Array<number> = incomingTransactionsForCurrentPeriod
             .filter(t => t.sourceAddress.indexOf(partialAddress) > -1)
-            .map(t => t.amount)
+            .map(t => t.amount);
+
+        if (incomingTransactionAmountsForCurrentPeriodForUser.length <= 0)
+            return 0;
+
+        return incomingTransactionAmountsForCurrentPeriodForUser
             .reduce((l, r) => l + r);
-
-        alert(`Sum: ${sum}`)
-
-        return sum;
     }
     catch(e){
-        alert(JSON.stringify(e))
         return 0;
     }
 }

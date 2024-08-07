@@ -3,5 +3,6 @@ export enum StateReducerActionType{
     AddToBalance,
     SetTransactionsIsLoading,
     SetTransactionsData,
+    IncrementManualTransactionTriggerCount,
     SetJackpotAmount
 }

@@ -1,5 +1,6 @@
 export interface IQuery<TDataType>{
     data: TDataType,
     isFetching: boolean,
-    refreshIntervalInMs: number
+    refreshIntervalInMs: number,
+    manualTriggerCount: number
 }
