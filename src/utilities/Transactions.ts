@@ -23,6 +23,8 @@ export const ProcessTransaction = async (
         value: toNano(amount),
         body: comment(state.defaultTransactionComment)
     });
+    alert('Thanks for your entry!\n\nPlease allow for up to 15 seconds for your balance and the pot size to reflect.');
+    await new Promise((resolve, reject) => setTimeout(resolve, (15*1000)));
     dispatch?.({
         type: StateReducerActionType.IncrementManualTransactionTriggerCount,
         value: 1
