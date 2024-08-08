@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { IState } from "../interfaces/IState";
 import { IStateReducerAction } from "../interfaces/IStateReducerAction";
 import { StateReducerActionType } from "../enums/StateReducerActionTypes";
-import { GetAccumAmountOfIncomingTransactionsFromTime, GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress, GetTransactionsForAddress } from "../utilities/Transactions";
+import { GetAccumAmountOfIncomingTransactionsFromTime, GetAccumAmountOfIncomingTransactionsFromTimeWithAddress, GetTransactionsForAddress } from "../utilities/Transactions";
 import { ITransaction } from "../interfaces/ITransaction";
 import { useTonAddress } from "@tonconnect/ui-react";
 
@@ -11,7 +11,7 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
     const friendlyAddress = useTonAddress();
 
     useEffect(() => {
-        const userBetsForCurrentPeriod: number = GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress(state.periodStartDate, state.transactionsQuery.data, friendlyAddress);
+        const userBetsForCurrentPeriod: number = GetAccumAmountOfIncomingTransactionsFromTimeWithAddress(state.periodStartDate, state.transactionsQuery.data, friendlyAddress);
 
         dispatch({
             type: StateReducerActionType.SetBalance,
@@ -25,7 +25,7 @@ export const useTransactionsFetching = (stateReducer: [IState, React.Dispatch<IS
             value: true
         });
 
-        GetTransactionsForAddress(state.destinationFriendlyWalletAddress, state.enableTonTestNetwork)
+        GetTransactionsForAddress(state.merchantWalletAddress, state.enableTonTestNetwork)
             .then((transactions: Array<ITransaction>) => {
                 dispatch({
                     type: StateReducerActionType.SetTransactionsData,

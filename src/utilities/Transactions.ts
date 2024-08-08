@@ -18,11 +18,11 @@ export const ProcessTransaction = async (
     }
 
     await sender.send({
-        to: Address.parse(state.destinationFriendlyWalletAddress),
+        to: Address.parse(state.merchantWalletAddress),
         value: toNano(amount),
         body: comment(state.defaultTransactionComment)
     });
-
+    await new Promise((resolve, reject) => setTimeout(resolve, (10*1000)));
     dispatch?.({
         type: StateReducerActionType.IncrementManualTransactionTriggerCount,
         value: 1
@@ -78,16 +78,19 @@ export const GetAccumAmountOfIncomingTransactionsFromTime = (startTime: Date, tr
     return sum;
 }
 
-export const GetAccumAmountOfIncomingTransactionsFromTimeWithPartialAddress = (startTime: Date, transactions: Array<ITransaction>, partialAddress: string): number => {
+export const GetAccumAmountOfIncomingTransactionsFromTimeWithAddress = (startTime: Date, transactions: Array<ITransaction>, address: string): number => {
     const incomingTransactionsForCurrentPeriod: Array<ITransaction> = GetTransactionsSinceFromTime(startTime, transactions)
         .filter(t => t.type == TransactionType.IncomingToMerchant);
 
-    if (incomingTransactionsForCurrentPeriod.length <= 0 || partialAddress.length <= 0)
+    if (incomingTransactionsForCurrentPeriod.length <= 0 || address.length <= 0)
         return 0;
 
     try{
+        const bounceableAddress: string = Address
+            .parse(address)
+            .toString({ bounceable: true });
         const incomingTransactionAmountsForCurrentPeriodForUser: Array<number> = incomingTransactionsForCurrentPeriod
-            .filter(t => t.sourceAddress.indexOf(partialAddress) > -1)
+            .filter(t => t.sourceAddress === bounceableAddress)
             .map(t => t.amount);
 
         if (incomingTransactionAmountsForCurrentPeriodForUser.length <= 0)

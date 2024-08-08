@@ -7,7 +7,7 @@ export interface IState{
     userBalance: number,
     periodStartDate: Date,
     periodEndDate: Date,
-    destinationFriendlyWalletAddress: string,
+    merchantWalletAddress: string,
     defaultTransactionComment: string,
     carouselInvervalInMs: number,
     purchaseOptions: Array<IPurchaseItem>,
