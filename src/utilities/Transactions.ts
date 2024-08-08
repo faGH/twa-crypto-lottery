@@ -1,15 +1,16 @@
 import { TonConnectUI } from '@tonconnect/ui';
-import { Address, toNano, comment, Sender } from "ton";
+import { Address, toNano, comment, Sender, SenderArguments } from "ton";
 import { IState } from "../interfaces/IState";
 import { IStateReducerAction } from "../interfaces/IStateReducerAction";
 import { StateReducerActionType } from "../enums/StateReducerActionTypes";
 import { ITransaction } from '../interfaces/ITransaction';
 import { TransactionType } from '../enums/TransactionTypes';
+import { SendTransactionResponse } from '@tonconnect/ui-react';
 
 export const ProcessTransaction = async (
     tonConnector: TonConnectUI,
     amount: number,
-    sender: Sender,
+    send: (args: SenderArguments) => Promise<SendTransactionResponse>,
     stateReducer: [IState, (React.Dispatch<IStateReducerAction> | undefined)?]): Promise<void> => {
     const [state, dispatch] = stateReducer;
 
@@ -17,12 +18,11 @@ export const ProcessTransaction = async (
         await tonConnector.connectWallet();
     }
 
-    await sender.send({
+    await send({
         to: Address.parse(state.merchantWalletAddress),
         value: toNano(amount),
         body: comment(state.defaultTransactionComment)
     });
-    await new Promise((resolve, reject) => setTimeout(resolve, (10*1000)));
     dispatch?.({
         type: StateReducerActionType.IncrementManualTransactionTriggerCount,
         value: 1

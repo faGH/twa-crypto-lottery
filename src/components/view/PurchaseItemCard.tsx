@@ -53,14 +53,14 @@ export function PurchaseItemCard(props: {
     backgroundImageUrl: string
 }){
     const [tonConnectUI, setOptions] = useTonConnectUI();
-    const { sender } = useTonConnect();
+    const { send } = useTonConnect();
     const stateReducer = useContext(UserContext);
 
     return (
         <CardWithBackground style={{backgroundImage: `url(${props.backgroundImageUrl})`}}>
             <CardOverlay className="CardOverlay">
                 <PopColorDiv>{props.title}</PopColorDiv>
-                <BetButton onClick={() => ProcessTransaction(tonConnectUI, props.amount, sender, stateReducer)}>{props.subtitle}</BetButton>
+                <BetButton onClick={() => ProcessTransaction(tonConnectUI, props.amount, send, stateReducer)}>{props.subtitle}</BetButton>
             </CardOverlay>
         </CardWithBackground>
     )
